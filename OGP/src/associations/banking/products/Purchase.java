@@ -1,5 +1,6 @@
-package associations;
+package associations.banking.products;
 
+import associations.banking.money.MoneyAmount;
 import be.kuleuven.cs.som.annotate.*;
 
 /**

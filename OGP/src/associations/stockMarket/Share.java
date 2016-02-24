@@ -1,5 +1,6 @@
-package associations;
+package associations.stockMarket;
 
+import associations.banking.money.MoneyAmount;
 import be.kuleuven.cs.som.annotate.*;
 
 /**
@@ -66,7 +67,7 @@ public class Share {
 	@Basic
 	@Raw
 	public MoneyAmount getCurrentPrice() {
-		return this.currentPrice;
+		return new MoneyAmount(this.currentPrice.getAmountInCents(), this.currentPrice.getCurrency());
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class Share {
 	@Raw
 	public void setCurrentPrice(MoneyAmount currentPrice) {
 		if (isValidCurrentPrice(currentPrice))
-			this.currentPrice = currentPrice;
+			this.currentPrice = new MoneyAmount(currentPrice.getAmountInCents(), currentPrice.getCurrency());
 	}
 
 	/**

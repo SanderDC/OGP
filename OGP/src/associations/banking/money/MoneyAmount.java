@@ -1,4 +1,4 @@
-package associations;
+package associations.banking.money;
 
 import java.math.BigInteger;
 

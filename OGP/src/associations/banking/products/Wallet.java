@@ -1,4 +1,4 @@
-package associations;
+package associations.banking.products;
 
 import be.kuleuven.cs.som.annotate.*;
 
