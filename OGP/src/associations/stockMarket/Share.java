@@ -1,6 +1,9 @@
 package associations.stockMarket;
 
+import java.util.*;
+
 import associations.banking.money.MoneyAmount;
+import associations.banking.products.Purchase;
 import be.kuleuven.cs.som.annotate.*;
 
 /**
@@ -104,5 +107,30 @@ public class Share {
 	 * Variable registering the current price of this share.
 	 */
 	private MoneyAmount currentPrice;
+	
+	@Basic
+	public Purchase getPurchaseAt(int index) throws IndexOutOfBoundsException{
+		return purchases.get(index);		
+	}
+	
+	public boolean canHaveAsPurchaseAt(Purchase purchase, int index){
+		return false;
+	}
+	
+	@Basic
+	public int getNbPurchases(){
+		return purchases.size();
+	}
+	
+	public void addAsPurchase(Purchase purchase){
+		assert (purchase != null) && (purchase.getShare() == this);
+		purchases.add(purchase);
+	}
+	
+	public void removeAsPurchase(Purchase purchase){
+		
+	}
+	
+	private final List<Purchase> purchases = new ArrayList<>();
 
 }

@@ -6,6 +6,7 @@ public class Experiment {
 		Rational rat = null;
 		while (rat == null){
 			try{
+				@SuppressWarnings("resource")
 				Scanner inputScanner = new Scanner(System.in);
 				long numerator = inputScanner.nextLong();
 				long denominator = inputScanner.nextLong();

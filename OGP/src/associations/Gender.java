@@ -3,6 +3,7 @@ package associations;
 public enum Gender {
 	
 	FEMALE{
+		@SuppressWarnings("unused")
 		public char getSymbol(){
 			return '\u2640';
 		}
@@ -11,6 +12,7 @@ public enum Gender {
 	,
 	
 	MALE {
+		@SuppressWarnings("unused")
 		public char getSymbol(){
 			return '\u2642';
 		}
