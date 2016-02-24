@@ -10,7 +10,7 @@ import be.kuleuven.cs.som.annotate.Raw;
  * @invar Each person can have its gender as gender. 
  *        | canHaveAsGender(this.getGender())
  * @invar The spouse of each person must be a valid spouse for any person.
- *        | isValidSpouse(getSpouse()) &&
+ *        | isValidSpouse(this.getSpouse()) &&
  *        | (this.getSpouse() == null) ||
  *        |		this == (this.getSpouse().getSpouse())
  * 
@@ -18,6 +18,7 @@ import be.kuleuven.cs.som.annotate.Raw;
  * @version 1.0
  */
 public class Person {
+
 
 	/**
 	 * Initialize this new person with given gender.
@@ -35,6 +36,17 @@ public class Person {
 			throw new IllegalArgumentException();
 		this.gender = gender;
 	}
+	
+	public void terminate(){
+		this.divorce();
+		this.terminated = true;
+	}
+	
+	public boolean isTerminated(){
+		return this.terminated ;
+	}
+	
+	private boolean terminated = false;
 
 	/**
 	 * Return the gender of this person.
@@ -101,6 +113,10 @@ public class Person {
 	public boolean isValidSpouse(Person spouse) {
 		if (spouse == null)
 			return true;
+		if (this.isTerminated())
+			return spouse == null;
+		if (spouse.isTerminated())
+			return false;
 		return (!(this.getGender() == spouse.getGender()));
 	}
 	
@@ -135,6 +151,24 @@ public class Person {
 	}
 	
 	/**
+	 * Divorces the persons in question
+	 * @post	...
+	 * 			| ! (new this).isMarried()
+	 * @post	...
+	 * 			| if this.isMarried()
+	 * 			| then ! (new this.getSpouse()).isMarried()
+	 */
+	public void divorce(){
+		Person spouse = this.getSpouse();
+		if (spouse == null)
+			return;
+		else {
+			this.setSpouse(null);
+			spouse.setSpouse(null);
+		}
+	}
+	
+	/**
 	 * Set the spouse of this person to the given spouse.
 	 * 
 	 * @param spouse
@@ -145,7 +179,7 @@ public class Person {
 	 *       new.getSpouse() == spouse
 	 */
 	@Raw
-	private void setSpouse(Person spouse) {
+	private void setSpouse(@Raw Person spouse) {
 		assert isValidSpouse(spouse);
 		this.spouse = spouse;
 	}
