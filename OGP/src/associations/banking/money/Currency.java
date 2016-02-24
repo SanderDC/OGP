@@ -17,7 +17,7 @@ import be.kuleuven.cs.som.annotate.*;
  * @author  Eric Steegmans
  */
 @Value
-enum Currency {
+public enum Currency {
 
 	EUR('Û'), USD('$'), JPY('\u00a5');
 

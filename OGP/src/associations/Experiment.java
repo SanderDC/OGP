@@ -2,7 +2,7 @@ package associations;
 
 import java.math.BigInteger;
 
-import associations.banking.money.MoneyAmount;
+import associations.banking.money.*;
 import associations.stockMarket.Share;
 
 public class Experiment {
