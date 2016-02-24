@@ -1,5 +1,5 @@
 /**
- * A class for signalling exceptions in multiplications.
+ * A class for signaling exceptions in multiplications.
  * 
  * @version  2.0
  * @author   Eric Steegmans
@@ -9,14 +9,14 @@ public class TimesOverflowException extends OverflowException {
     /**
      * Initialize this new times overflow exception with given operands.
      * 
-     * @param   left
-     *          The left operand involved in this new times overflow exception.
-     * @param   right
-     *          The right operand involved in this new times overflow exception.
-     * @effect  This new times overflow exception is initialized in the same
-     *          way an overflow exception is initialized with the given left
-     *          operand and given right operand.
-     *          | super(left,right)
+     * @param  left
+     *         The left operand involved in this new times overflow exception.
+     * @param  right
+     *         The right operand involved in this new times overflow exception.
+     * @effect This new times overflow exception is initialized as an overflow
+     *         exception with the given left operand as its left operand and
+     *         the given right operand as its right operand.
+     *       | super(left,right)
      */
     public TimesOverflowException(long left, long right) {
         super(left,right);

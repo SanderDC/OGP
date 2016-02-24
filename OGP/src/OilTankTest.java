@@ -46,24 +46,24 @@ public class OilTankTest {
 
 	@Test
 	public void isValidContent_NegContent() {
-		assertFalse(OilTank.isValidContent(-100, 200));
+		assertFalse(OilTank.isValidContents(-100, 200));
 	}
 	
 	@Test
 	public void isValidContent_LegalContent() {
-		assertTrue(OilTank.isValidContent(100, 200));
+		assertTrue(OilTank.isValidContents(100, 200));
 	}
 	
 	@Test
 	public void isValidContent_ContentTooLarge() {
-		assertFalse(OilTank.isValidContent(-100, 200));
+		assertFalse(OilTank.isValidContents(-100, 200));
 	}
 	
 	@Test
 	public void setContent_LegalCase() {
 		OilTank theTank = new OilTank(100,500);
-		theTank.setContent(300);
-		assertEquals(300,theTank.getContent());
+		theTank.setContents(300);
+		assertEquals(300,theTank.getContents());
 	}
 	
 }
