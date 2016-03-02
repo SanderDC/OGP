@@ -33,13 +33,20 @@ public class Purchase {
 	 *         highest price. | setHighestPrice(highestPrice)
 	 */
 	@Raw
-	public Purchase(int nbItems, MoneyAmount highestPrice, Share share) throws IllegalArgumentException {
+	public Purchase(int nbItems, MoneyAmount highestPrice, Share share, Wallet wallet)
+			throws IllegalArgumentException {
+		if (! this.isValidWallet(wallet))
+			throw new IllegalArgumentException();
 		setNbItems(nbItems);
 		setHighestPrice(highestPrice);
 		if (! isValidShare(share))
 			throw new IllegalArgumentException();
 		this.setShare(share);
 		share.addAsPurchase(this);
+		if (! this.isValidWallet(wallet) || (wallet.getPurchaseOf(share) != null))
+			throw new IllegalArgumentException();
+		this.setWallet(wallet);
+		wallet.addAsPurchase(this);
 	}
 
 	/**
@@ -57,8 +64,12 @@ public class Purchase {
 	 * @post This purchase is terminated. | new.isTerminated()
 	 */
 	public void terminate() {
-		// To be completed.
-		this.isTerminated = true;
+		if (! this.isTerminated){
+			Wallet oldWallet = this.getWallet();
+			this.setWallet(null);
+			oldWallet.removeAsPurchase(this);
+			this.isTerminated = true;
+		}
 	}
 
 	/**
@@ -152,7 +163,7 @@ public class Purchase {
 	 * Variable registering the highest price of this purchase.
 	 */
 	private MoneyAmount highestPrice;
-	
+
 	/**
 	 * Initialize this new purchase with given share.
 	 * 
@@ -209,4 +220,70 @@ public class Purchase {
 	 */
 	private Share share;
 
+	/**
+	 * @invar  The wallet of each Purchase must be a valid wallet for any
+	 *         Purchase.
+	 *       | isValidWallet(getWallet())
+	 */
+
+	/**
+	 * Initialize this new Purchase with given wallet.
+	 * 
+	 * @param  wallet
+	 *         The wallet for this new Purchase.
+	 * @pre    The given wallet must be a valid wallet for any Purchase.
+	 *       | isValidWallet(wallet)
+	 * @post   The wallet of this new Purchase is equal to the given
+	 *         wallet.
+	 *       | new.getWallet() == wallet
+	 */
+	public Purchase(Wallet wallet) {
+		this.setWallet(wallet);
+	}
+
+	/**
+	 * Return the wallet of this Purchase.
+	 */
+	@Basic @Raw
+	public Wallet getWallet() {
+		return this.wallet;
+	}
+
+	/**
+	 * Check whether the given wallet is a valid wallet for
+	 * any Purchase.
+	 *  
+	 * @param  wallet
+	 *         The wallet to check.
+	 * @return 
+	 *       | result == 
+	 */
+	public boolean isValidWallet(Wallet wallet) {
+		if (this.isTerminated())
+			return (wallet == null);
+		return (wallet != null) && (! wallet.isTerminated());
+	}
+
+	/**
+	 * Set the wallet of this Purchase to the given wallet.
+	 * 
+	 * @param  wallet
+	 *         The new wallet for this Purchase.
+	 * @pre    The given wallet must be a valid wallet for any
+	 *         Purchase.
+	 *       | isValidWallet(wallet)
+	 * @post   The wallet of this Purchase is equal to the given
+	 *         wallet.
+	 *       | new.getWallet() == wallet
+	 */
+	@Raw
+	private void setWallet(Wallet wallet) {
+		assert isValidWallet(wallet);
+		this.wallet = wallet;
+	}
+
+	/**
+	 * Variable registering the wallet of this Purchase.
+	 */
+	private Wallet wallet;
 }
