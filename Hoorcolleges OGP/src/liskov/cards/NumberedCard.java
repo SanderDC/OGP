@@ -66,7 +66,10 @@ public class NumberedCard extends Card {
 	 */
 	@Override
 	public boolean matchesOn(Card other) {
-		return false;
+		if (other instanceof NumberedCard)
+			return Math.abs(((NumberedCard) other).getValue()-this.getValue()) == 1;
+		else
+			return other.matchesOn(this);
 	}
 
 }

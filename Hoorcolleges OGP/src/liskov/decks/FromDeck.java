@@ -87,9 +87,19 @@ public abstract class FromDeck extends CardDeck {
 	 *         the card that was on top of this from deck.
 	 *       | (new target).getCardAtTop() == getCardAtTop()
 	 * @throws IllegalStateException
-	 *         ...
+	 * 		| this.hasMinimumSize() ||
+	 * 		| target.hasMaximumSize() ||
+	 * 		| target == null ?
+	 * 		| ! this.getCardAtTop().matchesOn(target.getCardAtTop())
 	 */
 	public void moveTop(TargetDeck target) throws IllegalStateException {
+		if (this.hasMinimumSize())
+			throw new IllegalStateException();
+		if (target.hasMaximumSize())
+			throw new IllegalStateException();
+		Card card = this.getCardAtTop();
+		this.popCard();
+		target.pushCard(card);
 	}
 
 }

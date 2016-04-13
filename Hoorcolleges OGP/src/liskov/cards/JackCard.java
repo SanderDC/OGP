@@ -21,7 +21,12 @@ public class JackCard extends Card {
 	 */
 	@Override
 	public boolean matchesOn(Card other) {
-		return false;
+		if (other instanceof JackCard)
+			return false;
+		else if (other instanceof NumberedCard)
+			return ((NumberedCard) other).getValue() == 10;
+		else
+			return other.matchesOn(this);//Double dispatch
 	}
 
 }

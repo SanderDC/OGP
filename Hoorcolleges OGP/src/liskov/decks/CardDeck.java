@@ -66,7 +66,15 @@ public abstract class CardDeck {
      *         The minimum number of cards for the capacity to check.
      * @param  maxNbCards
      *         The maximum number of cards for the capacity to check.
-     * @return ...
+     * @return 
+     * 		| if (maxNbCards > 46 || maxNbCards < 5)
+     * 		| then result == false
+     * @return
+     * 		| if (minNbCards < 0 || minNbCards > 1)
+     * 		| then result == false
+     * @return
+     * 		| if (minNbCards >= maxNbCards)
+     * 		| then result == false
      */
     @Raw
     public boolean canHaveAsCapacity(int minNbCards, int maxNbCards) {

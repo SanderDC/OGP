@@ -28,7 +28,7 @@ public class SourceDeck extends FromDeck {
 	 * Check whether this source deck can have the given capacity as
 	 * its capacity.
 	 * 
-	 * @return ...
+	 * @return 
 	 */
 	@Override
 	public boolean canHaveAsCapacity(int minNbCards, int maxNbCards) {

@@ -21,7 +21,7 @@ public class JokerCard extends Card {
 	 */
 	@Override
 	public final boolean matchesOn(Card other) {
-		return false;
+		return true;
 	}
 
 }
