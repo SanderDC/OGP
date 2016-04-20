@@ -1,7 +1,7 @@
 package interfaces.trees.exceptions;
 
 import be.kuleuven.cs.som.annotate.Basic;
-import interfaces.trees.BinaryTree;
+import interfaces.trees.IBinaryTree;
 
 /**
  * A class for signaling illegal element exceptions.
@@ -26,7 +26,7 @@ public class IllegalElementException extends RuntimeException {
 	 *          is equal to the given binary tree.
 	 *          | new.getBinaryTree() == binaryTree
 	 */
-	public IllegalElementException(Object element, BinaryTree binaryTree) {
+	public IllegalElementException(Object element, IBinaryTree binaryTree) {
 		this.element = element;
 		this.binaryTree = binaryTree;
 	}
@@ -46,14 +46,14 @@ public class IllegalElementException extends RuntimeException {
 	/**
 	 * Return the binary tree of this illegal element exception exception.
 	 */
-	@Basic public BinaryTree getBinaryTree() {
+	@Basic public IBinaryTree getBinaryTree() {
 		return this.binaryTree;
 	}
 
 	/**
 	 * Variable registering the binary tree of this illegal element exception exception.
 	 */
-	private final BinaryTree binaryTree;
+	private final IBinaryTree binaryTree;
 
 	/**
 	 * The Java API strongly recommends to explicitly define a version

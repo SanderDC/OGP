@@ -55,12 +55,15 @@ public abstract class NonEmptyBinaryTree extends BinaryTree {
 
 	/**
 	 * Return the number of occurrences of the given element in this
-	 * non-empty binary tree.
+	 * binary leaf tree.
 	 */
 	@Override
-	@Basic
 	public int getNbOccurrencesOf(Object element) {
-		return -1;
+		if (element == null){
+			return (getRootElement() == null ? 1 : 0);
+		}
+		else
+			return (element.equals(getRootElement()) ? 1 : 0);
 	}
 
 	/**
@@ -105,7 +108,7 @@ public abstract class NonEmptyBinaryTree extends BinaryTree {
 	 * Return the element stored in the root of this non-empty binary tree.
 	 */
 	@Raw
-	protected Object getRootElement() {
+	public Object getRootElement() {
 		return this.rootElement;
 	}
 
@@ -178,7 +181,7 @@ public abstract class NonEmptyBinaryTree extends BinaryTree {
 	 * Check whether this non-empty binary tree can have the given
 	 * binary tree as its left subtree.
 	 * 
-	 * @param  tree
+	 * @param  leftTree
 	 *         The tree to check.
 	 * @return False if the given binary tree is not effective.
 	 *       | if (tree == null)
@@ -193,8 +196,8 @@ public abstract class NonEmptyBinaryTree extends BinaryTree {
 	 *       |   then result == false
 	 */
 	@Raw
-	protected boolean canHaveAsLeftTree(BinaryTree tree) {
-		return (tree != null) && (tree != this) && (!tree.hasAsSubTree(this));
+	protected boolean canHaveAsLeftTree(IBinaryTree leftTree) {
+		return (leftTree != null) && (leftTree != this) && (!leftTree.hasAsSubTree(this));
 	}
 
 	/**
@@ -241,7 +244,7 @@ public abstract class NonEmptyBinaryTree extends BinaryTree {
 	 *       |   (getRightTree().hasAsSubTree(tree)) 
 	 */
 	@Raw
-	protected boolean hasAsSubTree(BinaryTree tree) {
+	public boolean hasAsSubTree(IBinaryTree tree) {
 		return (getLeftTree() == tree) || (getRightTree() == tree)
 				|| getLeftTree().hasAsSubTree(tree)
 				|| getRightTree().hasAsSubTree(tree);

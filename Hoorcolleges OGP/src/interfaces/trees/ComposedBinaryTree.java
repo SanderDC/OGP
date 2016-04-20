@@ -87,7 +87,7 @@ public class ComposedBinaryTree extends NonEmptyBinaryTree {
 	@Override
 	@Basic
 	public int getNbOccurrencesOf(Object element) {
-		return -1;
+		return super.getNbOccurrencesOf(element) + getLeftTree().getNbOccurrencesOf(element) + getRightTree().getNbOccurrencesOf(element);
 	}
 
     /**
@@ -128,7 +128,13 @@ public class ComposedBinaryTree extends NonEmptyBinaryTree {
     @Override
     public ComposedBinaryTree addElement(Object element)
             throws IllegalElementException {
-        return null;
+    	if (this.getLeftTree().getNbElements() <= this.getRightTree().getNbElements()){
+    	//if (Math.random() < 0.5) { //# elementen is ongeveer gelijk, gaat sneller dan elementen tellen
+    		this.setLeftTree(this.getLeftTree().addElement(element));
+    	}
+    	else
+    		this.setRightTree(this.getRightTree().addElement(element));
+        return this;
     }
 
     /**
@@ -200,7 +206,7 @@ public class ComposedBinaryTree extends NonEmptyBinaryTree {
 	 *        as the given tree.
 	 *      | new.getLeftTree() == leftTree
 	 */
-	protected final void setLeftTree(BinaryTree leftTree) {
+	protected final void setLeftTree(IBinaryTree leftTree) {
 		assert canHaveAsLeftTree(leftTree);
 		this.leftTree = leftTree;
 	}

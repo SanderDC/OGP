@@ -51,19 +51,6 @@ public class LeafBinaryTree extends NonEmptyBinaryTree {
     }
 
     /**
-     * Return the number of occurrences of the given element in this
-     * binary leaf tree.
-     */
-    @Override
-    public int getNbOccurrencesOf(Object element) {
-    	if (element == null){
-    		return (getRootElement() == null ? 1 : 0);
-    	}
-    	else
-    		return (element.equals(getRootElement()) ? 1 : 0);
-    }
-
-    /**
      * Check whether this leaf binary tree can have occurrences
      * of the given element.
      */
@@ -119,7 +106,7 @@ public class LeafBinaryTree extends NonEmptyBinaryTree {
     @Override
     public ComposedBinaryTree addElement(Object element)
             throws IllegalElementException {
-        return null;
+        return new ComposedBinaryTree(element, getRootElement());
     }
 
     /**
@@ -192,7 +179,7 @@ public class LeafBinaryTree extends NonEmptyBinaryTree {
      * 
      */
     @Override
-    protected boolean hasAsSubTree(BinaryTree tree) {
+    protected boolean hasAsSubTree(IBinaryTree tree) {
         // Re-implementation for reasons of efficiency.
         return (getLeftTree() == tree) || (getRightTree() == tree);
     }

@@ -116,9 +116,9 @@ public class EmptyBinaryTree extends BinaryTree {
      * Add the given element to this empty binary tree.
      */
     @Override
-    public BinaryTree addElement(Object element)
+    public LeafBinaryTree addElement(Object element)
             throws IllegalElementException {
-    	return null;
+    	return new LeafBinaryTree(element);
     }
 
     /**
@@ -143,7 +143,7 @@ public class EmptyBinaryTree extends BinaryTree {
 	 *       | result == false 
 	 */
     @Override
-	public boolean hasAsSubTree(BinaryTree tree) {
+	public boolean hasAsSubTree(IBinaryTree tree) {
 		return false;
 	}
 
