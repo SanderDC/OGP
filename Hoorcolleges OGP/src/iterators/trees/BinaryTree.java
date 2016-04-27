@@ -213,12 +213,12 @@ public interface BinaryTree extends Cloneable,Iterable<Object> {
      * @return An effective stream that delivers all the elements in
      *         this tree in the same order as the iterator for this tree.
      */
-//    public default Stream<Object> stream() {
-//    	Stream.Builder<Object> builder = Stream.builder();
-//    	for (Object element: this)
-//    		builder.accept(element);
-//    	return builder.build();    		
-//    }
+    public default Stream<Object> stream() {
+    	Stream.Builder<Object> builder = Stream.builder();
+    	for (Object element: this)
+    		builder.accept(element);
+    	return builder.build();    		
+    }
         
     /**
      * Check whether this binary tree has the given tree as a direct or

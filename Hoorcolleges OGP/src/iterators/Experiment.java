@@ -4,11 +4,14 @@ import iterators.trees.*;
 import iterators.trees.exceptions.*;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Experiment {
 	
 	public static void main(String args[]) {
-		externalIteration();
+		//externalIteration();
 		
 		internalIteration();
 		
@@ -64,7 +67,28 @@ public class Experiment {
 			
 			// Compute the sum of all the Fibonacci numbers in the tree that can be
 			// divided by the given factor.
-			Integer total = 0;
+			Optional<Integer> total = 
+			myTree.stream().filter(new Predicate<Object>(){
+
+				@Override
+				public boolean test(Object t) {
+					return ((Integer) t) % factor == 0;
+				}
+				
+			}).map(new Function<Object, Integer>(){
+
+				@Override
+				public Integer apply(Object t) {
+					return ((Integer) t)*((Integer) t);
+				}
+				
+			}).reduce(new BinaryOperator<Integer>() {
+				
+				@Override
+				public Integer apply(Integer arg0, Integer arg1) {
+					return arg0 + arg1;
+				}
+			});
 			
 			System.out.println("Total of odd Fibonacci numbers: " + total);
 			scanner.close();
