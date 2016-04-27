@@ -68,27 +68,9 @@ public class Experiment {
 			// Compute the sum of all the Fibonacci numbers in the tree that can be
 			// divided by the given factor.
 			Optional<Integer> total = 
-			myTree.stream().filter(new Predicate<Object>(){
-
-				@Override
-				public boolean test(Object t) {
-					return ((Integer) t) % factor == 0;
-				}
-				
-			}).map(new Function<Object, Integer>(){
-
-				@Override
-				public Integer apply(Object t) {
-					return ((Integer) t)*((Integer) t);
-				}
-				
-			}).reduce(new BinaryOperator<Integer>() {
-				
-				@Override
-				public Integer apply(Integer arg0, Integer arg1) {
-					return arg0 + arg1;
-				}
-			});
+			myTree.stream().filter((Object t) -> ((Integer) t)%factor == 0)
+			.map((Object t) -> ((Integer) t)* ((Integer) t))
+			.reduce((Integer t, Integer u) -> t + u);
 			
 			System.out.println("Total of odd Fibonacci numbers: " + total);
 			scanner.close();
