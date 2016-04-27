@@ -27,6 +27,18 @@ public class Experiment {
 			// Compute the sum of the squares of all the Fibonacci numbers in
 			// the tree that can be divided by the given factor.
 			Integer total = 0;
+			Iterator<Object> iter = myTree.iterator();
+			while (iter.hasNext()){
+				Integer value = (Integer) iter.next();
+				if (value%factor == 0)
+					total += value*value;
+			}
+			for (Object value:myTree){
+				Integer val = (Integer) value;
+				if (val%factor == 0)
+					total += val*val;
+			}
+			
 			
 			System.out.println("Total : " + total);
 			scanner.close();

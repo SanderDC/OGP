@@ -24,7 +24,7 @@ import iterators.trees.exceptions.*;
  * @version 2.0
  * @author  Eric Steegmans
  */
-public interface BinaryTree extends Cloneable {
+public interface BinaryTree extends Cloneable,Iterable<Object> {
 
     /**
      * Return the number of occurrences of the given element in this binary tree.
