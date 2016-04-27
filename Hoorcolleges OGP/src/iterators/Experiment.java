@@ -33,11 +33,11 @@ public class Experiment {
 				if (value%factor == 0)
 					total += value*value;
 			}
-			for (Object value:myTree){
-				Integer val = (Integer) value;
-				if (val%factor == 0)
-					total += val*val;
-			}
+//			for (Object value:myTree){
+//				Integer val = (Integer) value;
+//				if (val%factor == 0)
+//					total += val*val;
+//			}
 			
 			
 			System.out.println("Total : " + total);

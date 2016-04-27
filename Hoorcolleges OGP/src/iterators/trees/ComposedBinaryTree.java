@@ -133,7 +133,32 @@ public abstract class ComposedBinaryTree extends NonEmptyBinaryTreeImpl {
 	 */
 	@Override
 	public Iterator<Object> iterator() {
-		return null;
+		return new Iterator<Object>(){
+
+			@Override
+			public boolean hasNext() {
+				return (leftIterator.hasNext() || rightIterator.hasNext() || !rootAlreadyReturned);
+			}
+
+			@Override
+			public Object next() throws NoSuchElementException{
+				if (!hasNext())
+					throw new NoSuchElementException();
+				if (leftIterator.hasNext())
+					return leftIterator.next();
+				if (!rootAlreadyReturned){
+					rootAlreadyReturned = true;
+					return ComposedBinaryTree.this.getRootElement();
+				}
+				return rightIterator.next();
+			}
+			
+			private Iterator<Object> leftIterator = 
+					ComposedBinaryTree.this.getLeftTree().iterator();
+			private Iterator<Object> rightIterator = 
+					getRightTree().iterator();
+			private boolean rootAlreadyReturned;
+		};
 	}
 
 	/**
