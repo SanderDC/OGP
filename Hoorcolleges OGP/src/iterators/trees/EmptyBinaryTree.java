@@ -124,7 +124,19 @@ public abstract class EmptyBinaryTree implements BinaryTree {
      */
     @Override
     public Iterator<Object> iterator() {
-        return null;
+        return new Iterator<Object>(){
+
+			@Override
+			public boolean hasNext() {
+				return false;
+			}
+
+			@Override
+			public Object next() throws NoSuchElementException {
+				throw new NoSuchElementException();
+			}
+        	
+        };
     }
 
     /**

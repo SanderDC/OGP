@@ -136,7 +136,7 @@ public abstract class LeafBinaryTree extends NonEmptyBinaryTreeImpl {
 	 */
 	@Override
 	public Iterator<Object> iterator() {
-		class LeafTreeIterator implements Iterator<Object>{
+		return new Iterator<Object>(){
 
 			@Override
 			public boolean hasNext() {
@@ -152,8 +152,7 @@ public abstract class LeafBinaryTree extends NonEmptyBinaryTreeImpl {
 			}
 
 			private boolean rootAlreadyReturned = false;
-		}
-		return new LeafTreeIterator();
+		};
 	}
 
 	/**
