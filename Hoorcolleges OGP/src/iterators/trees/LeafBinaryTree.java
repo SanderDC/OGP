@@ -130,31 +130,30 @@ public abstract class LeafBinaryTree extends NonEmptyBinaryTreeImpl {
 		return (LeafBinaryTree) super.clone();
 	}
 
-	private class LeafTreeIterator implements Iterator<Object>{
-
-		@Override
-		public boolean hasNext() {
-			return !rootAlreadyReturned;
-		}
-
-		@Override
-		public Object next() throws NoSuchElementException{
-			if (!hasNext())
-				throw new NoSuchElementException();
-			rootAlreadyReturned = true;
-			return LeafBinaryTree.this.getRootElement();//gewoon getRootElement kan in principe ook
-		}
-
-		private boolean rootAlreadyReturned = false;
-	}
-
 	/**
 	 * Return an iterator returning all the elements in this binary
 	 * leaf tree one by one.
 	 */
 	@Override
 	public Iterator<Object> iterator() {
-		return this.new LeafTreeIterator();
+		class LeafTreeIterator implements Iterator<Object>{
+
+			@Override
+			public boolean hasNext() {
+				return !rootAlreadyReturned;
+			}
+
+			@Override
+			public Object next() throws NoSuchElementException{
+				if (!hasNext())
+					throw new NoSuchElementException();
+				rootAlreadyReturned = true;
+				return LeafBinaryTree.this.getRootElement();//gewoon getRootElement kan in principe ook
+			}
+
+			private boolean rootAlreadyReturned = false;
+		}
+		return new LeafTreeIterator();
 	}
 
 	/**
