@@ -68,9 +68,9 @@ public class Experiment {
 			// Compute the sum of all the Fibonacci numbers in the tree that can be
 			// divided by the given factor.
 			Optional<Integer> total = 
-			myTree.stream().filter((Object t) -> ((Integer) t)%factor == 0)
-			.map((Object t) -> ((Integer) t)* ((Integer) t))
-			.reduce((Integer t, Integer u) -> t + u);
+			myTree.stream().filter(t -> ((Integer) t)%factor == 0)
+			.map(t -> ((Integer) t)* ((Integer) t))
+			.reduce((t, u) -> t + u);
 			
 			System.out.println("Total of odd Fibonacci numbers: " + total);
 			scanner.close();
