@@ -1,3 +1,4 @@
+package partOne;
 /**
  * A class for signaling exceptions in additions.
  * 

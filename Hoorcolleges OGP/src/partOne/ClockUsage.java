@@ -1,3 +1,4 @@
+package partOne;
 /**
  * A class illustrating how to manipulate digital clocks by
  * means of the methods offered by their class. 

@@ -1,3 +1,4 @@
+package partOne;
 /**
  * A collection of mathematical functions not offered by the
  * standard class Math in the Java API.

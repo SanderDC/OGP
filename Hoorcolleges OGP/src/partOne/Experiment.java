@@ -1,3 +1,4 @@
+package partOne;
 import java.util.Scanner;
 
 public class Experiment {
